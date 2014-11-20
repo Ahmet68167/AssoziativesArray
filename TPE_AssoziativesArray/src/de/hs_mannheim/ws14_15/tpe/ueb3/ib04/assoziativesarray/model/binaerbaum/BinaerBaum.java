@@ -10,6 +10,7 @@ public class BinaerBaum<S, W> {
 	}
 	
 	public void hinzufuegen(S schluessel, W wert) {
+		boolean eingefuegt = true;
 		Knoten<S, W> neuerKnoten = new Knoten<>(schluessel, wert);
 		
 		if(getWurzel() == null)
@@ -18,16 +19,15 @@ public class BinaerBaum<S, W> {
 			Knoten<S, W> fokKnoten = getWurzel();
 			Knoten<S, W> ElternKnoten;
 			
-			while(true) {
+			while(eingefuegt) {
 				ElternKnoten = fokKnoten;
 				
 				if(schluessel.hashCode() < fokKnoten.getSchluessel().hashCode()) {
 					fokKnoten = fokKnoten.getLinks();
 					
 					if(fokKnoten == null) {
-						Knoten<S, W> links = ElternKnoten.getLinks();
-						links = neuerKnoten;
-						return;
+						ElternKnoten.setLinks(neuerKnoten);
+						eingefuegt = false;
 					}
 					
 				} else {
@@ -35,15 +35,16 @@ public class BinaerBaum<S, W> {
 					fokKnoten = fokKnoten.getRechts();
 					
 					if(fokKnoten == null) {
-						Knoten<S, W> rechts = ElternKnoten.getRechts();
-						rechts = neuerKnoten;
-						return;
+						ElternKnoten.setRechts(neuerKnoten);
+						eingefuegt = false;
 					}
 					
 				}
 				
 			}
+			
 		}
+		
 	}
 	
 	public Knoten<S, W> getWurzel() {
@@ -62,13 +63,15 @@ public class BinaerBaum<S, W> {
 		this.groesse = groesse;
 	}
 	
-
-	 public void inOrderTraverseTree(Knoten<S, W> focusNode) { 
-		 if (focusNode != null) { 
-			 inOrderTraverseTree(focusNode.getLinks()); 
-			 System.out.println(focusNode); 
-			 inOrderTraverseTree(focusNode.getRechts()); 
-		 }
-	 }
+	
+	// TRASH
+	public void ausgabe() {
+		
+		System.out.println(getWurzel().getSchluessel() + " " + getWurzel().getWert());
+		System.out.println(getWurzel().getLinks().getSchluessel() + " " + getWurzel().getLinks().getWert());
+		System.out.println(getWurzel().getRechts().getSchluessel() + " " + getWurzel().getRechts().getWert());
+		System.out.println(getWurzel().getLinks().getLinks().getSchluessel() + " " + getWurzel().getLinks().getLinks().getWert());
+	}
+	
 			 
 }

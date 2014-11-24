@@ -63,15 +63,5 @@ public class BinaerBaum<S, W> {
 		this.groesse = groesse;
 	}
 	
-	
-	// TRASH
-	public void ausgabe() {
-		
-		System.out.println(getWurzel().getSchluessel() + " " + getWurzel().getWert());
-		System.out.println(getWurzel().getLinks().getSchluessel() + " " + getWurzel().getLinks().getWert());
-		System.out.println(getWurzel().getRechts().getSchluessel() + " " + getWurzel().getRechts().getWert());
-		System.out.println(getWurzel().getLinks().getLinks().getSchluessel() + " " + getWurzel().getLinks().getLinks().getWert());
-	}
-	
 			 
 }

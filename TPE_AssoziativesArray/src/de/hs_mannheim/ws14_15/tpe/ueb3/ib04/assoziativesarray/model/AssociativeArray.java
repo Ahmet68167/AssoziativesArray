@@ -3,7 +3,7 @@ package de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
-public interface AssoziativesArray<S, W> {
+public interface AssociativeArray<S, W> {
 
 	public abstract void clear();
 	
@@ -17,7 +17,7 @@ public interface AssoziativesArray<S, W> {
 	
 	public abstract void put(S schluessel, W wert);
 	
-	public abstract void putAll(AssoziativesArray Array);
+	public abstract void putAll(AssociativeArray Array);
 	
 	public abstract W remove(S schluessel);
 	
@@ -27,9 +27,9 @@ public interface AssoziativesArray<S, W> {
 	
 	public abstract void forEach(BiConsumer consumer);
 	
-	public abstract AssoziativesArray<S, W> extractAll(AssoziativesArray Array);
+	public abstract AssociativeArray<S, W> extractAll(AssociativeArray Array);
 	
-	public abstract AssoziativesArray<S, W> map(BiFunction function);
+	public abstract AssociativeArray<S, W> map(BiFunction function);
 	
 	
 }

@@ -3,10 +3,9 @@ package de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum;
 public class BinaerBaum<S, W> {
 
 	private Knoten<S, W> wurzel;
-	private int groesse;
 	
 	public BinaerBaum() {
-		this.groesse = 0;
+
 	}
 	
 	public void hinzufuegen(S schluessel, W wert) {
@@ -55,13 +54,30 @@ public class BinaerBaum<S, W> {
 		this.wurzel = wurzel;
 	}
 	
-	public int getGroesse() {
-		return this.groesse;
+	public String toString() {
+		String txt = "{";
+		String tmp = "";
+		txt += ausgeben(getWurzel());
+		
+		// Entfernt das letzte Komma im String
+		for(int i = 0; i < txt.length() - 2; i++)
+			tmp += txt.charAt(i);
+		
+		
+		tmp += "}";
+		return tmp;
 	}
 	
-	public void setGroesse(int groesse) {
-		this.groesse = groesse;
+	public String ausgeben(Knoten<S, W> knoten) {
+		String txt = "";
+		
+		if(knoten != null) {
+			txt += ausgeben(knoten.getLinks());
+			txt += knoten.getSchluessel() + "=" + knoten.getWert() + ", ";
+			txt += ausgeben(knoten.getRechts());
+		}
+		
+		return txt;	
 	}
-	
 			 
 }

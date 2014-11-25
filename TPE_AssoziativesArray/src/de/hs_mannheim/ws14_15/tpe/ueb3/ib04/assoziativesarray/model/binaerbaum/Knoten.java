@@ -44,4 +44,5 @@ public class Knoten<S, W> {
 		this.rechts = rechts;
 	}
 
+
 }

@@ -29,9 +29,9 @@ public interface AssociativeArray<S, W> {
 	
 	public abstract void forEach(BiConsumer consumer);
 	
-	public abstract AssociativeArray<S, W> extractAll(BinearBaumAssoziativesArray array);
+	public abstract BinearBaumAssoziativesArray<S, W> extractAll(BinearBaumAssoziativesArray array);
 	
-	public abstract AssociativeArray<S, W> map(BiFunction function);
+	public abstract BinearBaumAssoziativesArray<S, W> map(BiFunction function);
 	
 	
 }

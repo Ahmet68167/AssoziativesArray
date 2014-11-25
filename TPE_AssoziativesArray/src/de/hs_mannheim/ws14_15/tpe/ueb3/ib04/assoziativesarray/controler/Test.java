@@ -1,5 +1,7 @@
 package de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.controler;
 
+import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.Dictionary;
+import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.StringAssociativeArray;
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.BinearBaumAssoziativesArray;
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.Knoten;
 
@@ -26,9 +28,25 @@ public class Test {
 		b.put(54, "OP");
 		b.put(86, "OI");
 		
-		System.out.println(a.remove(900));
-		
+		a.putAll(b);
 		System.out.println(a);
+		System.out.println(a.extractAll(b));
+		
+		Dictionary d = new Dictionary();
+		d.put("A", "Ahmet");
+		d.put("B", "Bi");
+		d.put("C", "Ca");
+		d.put("D", "Da");
+		d.put("E", "EE");
+		d.put("F", "FFF");
+		d.put("G", "GGG");
+		d.put("H", "HHH");
+		
+		String[] lalala = d.values();
+		
+		for(int i = 0; i < lalala.length; i++) {
+			System.out.println(lalala[i]);
+		}
 		
 	}
 	

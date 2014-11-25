@@ -177,18 +177,26 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 
 	@Override
 	public void forEach(BiConsumer consumer) {
-		// TODO Auto-generated method stub
-		
+		forEachRek(consumer, getWurzel());
+	}
+	
+	private void forEachRek(BiConsumer consumer, Knoten<S, W> knoten) {
+		if(knoten != null)
+			consumer.accept(knoten.getSchluessel(), knoten.getWert());
+		if(knoten.getLinks() != null)
+			forEachRek(consumer, knoten.getLinks());
+		if(knoten.getRechts() != null)
+			forEachRek(consumer, knoten.getRechts());
 	}
 
 	@Override
-	public AssociativeArray extractAll(BinearBaumAssoziativesArray array) {
-		// TODO Auto-generated method stub
-		return null;
+	public BinearBaumAssoziativesArray extractAll(BinearBaumAssoziativesArray array) {
+		array.putAll(getWurzel());
+		return array;
 	}
 
 	@Override
-	public AssociativeArray map(BiFunction function) {
+	public BinearBaumAssoziativesArray map(BiFunction function) {
 		// TODO Auto-generated method stub
 		return null;
 	}

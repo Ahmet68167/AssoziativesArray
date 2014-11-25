@@ -7,7 +7,7 @@ public class Knoten<S, W> {
 	private Knoten<S, W> links;
 	private Knoten<S, W> rechts;
 	
-	public Knoten(S schluessel, W wert) {
+	protected Knoten(S schluessel, W wert) {
 		this.wert = wert;
 		this.schluessel = schluessel;
 	}

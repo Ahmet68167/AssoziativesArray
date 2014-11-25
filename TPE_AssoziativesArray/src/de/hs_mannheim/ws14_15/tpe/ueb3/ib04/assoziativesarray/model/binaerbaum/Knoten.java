@@ -43,5 +43,5 @@ public class Knoten<S, W> {
 	public void setRechts(Knoten<S, W> rechts) {
 		this.rechts = rechts;
 	}
-	
+
 }

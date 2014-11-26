@@ -28,6 +28,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	@Override
 	public void clear() {
 		setWurzel(null);
+		setAnzahl(0);
 	}
 
 	@Override
@@ -109,6 +110,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	@Override
 	public void putAll(BinearBaumAssoziativesArray<S, W> array) {
 		putAll(array.getWurzel());
+		setAnzahl(size() + array.size()-1);
 	}
 	
 	private void putAll(Knoten<S,W> knoten) {
@@ -128,6 +130,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 		else {
 			if(containsKey(schluessel)) {
 				removed = findKey(schluessel).getWert();
+				setAnzahl(size()-1);
 				remove(getWurzel(), schluessel);
 			} else
 				removed = null;
@@ -203,6 +206,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	@Override
 	public BinearBaumAssoziativesArray<S, W> extractAll(BinearBaumAssoziativesArray<S, W> array) {
 		array.putAll(getWurzel());
+		array.setAnzahl(array.size() + size());
 		return array;
 	}
 
@@ -286,6 +290,10 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 		return this.anzahl;
 	}
 	
+	private void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
+	}
+	
 	public String toString() {
 		String txt = "";
 		String tmp = "";
@@ -339,8 +347,5 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 			return false;
 		return true;
 	}
-
-	
-	
 
 }

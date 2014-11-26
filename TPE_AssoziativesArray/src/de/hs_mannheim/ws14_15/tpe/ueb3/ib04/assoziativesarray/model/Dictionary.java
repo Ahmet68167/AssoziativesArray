@@ -3,12 +3,27 @@ package de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model;
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.BinearBaumAssoziativesArray;
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.Knoten;
 
+/**
+ * Erstellt ein Dictionary
+ * 
+ * @author Ahmet
+ *
+ */
 public class Dictionary extends StringAssociativeArray<String> {
 	
+	/**
+	 * legt ein Dictionary an
+	 * 
+	 */
 	public Dictionary() {
 		
 	}
 	
+	/**
+	 * Gibt alle Schluessel des Dictionarys als Array zurueck
+	 * 
+	 * @return alle Schluessel als Array
+	 */
 	public String[] keys() {
 		String[] schluessel = new String[size()];
 		return keysRek(schluessel, getWurzel(), 0);
@@ -28,6 +43,11 @@ public class Dictionary extends StringAssociativeArray<String> {
 		return schluessel;
 	}
 	
+	/**
+	 * Alle Werte des Dictionarys als Array
+	 * 
+	 * @return alle Werte als Array
+	 */
 	public String[] values() {
 		String[] werte = new String[size()];
 		return valuesRek(werte, getWurzel(), 0);

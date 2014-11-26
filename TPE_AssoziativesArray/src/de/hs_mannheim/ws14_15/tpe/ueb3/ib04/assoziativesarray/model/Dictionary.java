@@ -11,55 +11,40 @@ public class Dictionary extends StringAssociativeArray<String> {
 	
 	public String[] keys() {
 		String[] schluessel = new String[size()];
-		String[] schluessel2 = new String[size()];
-		schluessel = keysRek(schluessel, getWurzel(), size());
-		
-		for(int i = 0; i < size(); i++) {
-			schluessel2[i] = schluessel[size()-1-i];
-		}
-		return schluessel2;
+		return keysRek(schluessel, getWurzel(), 0);
 	}
 	
 	private String[] keysRek(String[] schluessel, Knoten<String, String> knoten, int size) {
-		String[] schluessel1 = new String[size()];
-		
+
 		if(knoten != null) {
-			schluessel[size-1] = knoten.getSchluessel();
-			schluessel1 = schluessel;
+			schluessel[size] = knoten.getSchluessel();
+			
 			if(knoten.getLinks() != null)
-				keysRek(schluessel1, knoten.getLinks(), size-1);
+				keysRek(schluessel, knoten.getLinks(), size+1);
 			if(knoten.getRechts() != null)
-				keysRek(schluessel1, knoten.getRechts(), size-1);
+				keysRek(schluessel, knoten.getRechts(), size+1);
 		}
 		
-		return schluessel1;
+		return schluessel;
 	}
 	
 	public String[] values() {
 		String[] werte = new String[size()];
-		String[] werte2 = new String[size()];
-		werte = valuesRek(werte, getWurzel(), size());
-		
-		for(int i = 0; i < size(); i++) {
-			werte2[i] = werte[size()-1-i];
-		}
-
-		return werte2;
+		return valuesRek(werte, getWurzel(), 0);
 	}
 	
 	private String[] valuesRek(String[] werte, Knoten<String, String> knoten, int size) {
-		String[] werte1 = new String[size()];
-		
+
 		if(knoten != null) {
-			werte[size-1] = knoten.getWert();
-			werte1 = werte;
+			werte[size] = knoten.getWert();
+			
 			if(knoten.getLinks() != null)
-				valuesRek(werte1, knoten.getLinks(), size-1);
+				valuesRek(werte, knoten.getLinks(), size+1);
 			if(knoten.getRechts() != null)
-				valuesRek(werte1, knoten.getRechts(), size-1);
+				valuesRek(werte, knoten.getRechts(), size+1);
 		}
 		
-		return werte1;
+		return werte;
 	}
 
 }

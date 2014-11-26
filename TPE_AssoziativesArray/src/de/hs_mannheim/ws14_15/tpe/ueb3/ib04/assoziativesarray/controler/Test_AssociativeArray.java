@@ -142,7 +142,7 @@ public class Test_AssociativeArray {
 		
 		BiFunction add = (x, y) -> (int) y + 2;
 		neu = blatt.map(add);
-		System.out.println(neu);
+		assertEquals("{L=7, P=4}", neu.toString());
 		
 	}
 	

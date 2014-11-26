@@ -229,7 +229,6 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 			
 		}
 		
-		
 		return array;
 	}
 	

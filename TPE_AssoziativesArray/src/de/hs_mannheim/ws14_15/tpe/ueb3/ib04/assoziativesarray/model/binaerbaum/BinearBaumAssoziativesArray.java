@@ -5,11 +5,22 @@ import java.util.function.BiFunction;
 
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.AssociativeArray;
 
+/**
+ * Erstellt ein BinearBaumAssoziativesArray
+ * 
+ * @author Ahmet
+ *
+ * @param <S> Datentyp der Schluessel
+ * @param <W> Datentyp der Werte
+ */
 public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W> {
 
 	private Knoten<S, W> wurzel;
 	private int anzahl;
 	
+	/**
+	 * Legt einen BinaerBaumAssoziativesArray an und initialisiert die Anzahl mit 0 
+	 */
 	public BinearBaumAssoziativesArray() {
 		this.anzahl = 0;
 	}
@@ -96,7 +107,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	}
 
 	@Override
-	public void putAll(BinearBaumAssoziativesArray array) {
+	public void putAll(BinearBaumAssoziativesArray<S, W> array) {
 		putAll(array.getWurzel());
 	}
 	
@@ -176,11 +187,11 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	}
 
 	@Override
-	public void forEach(BiConsumer consumer) {
+	public void forEach(BiConsumer<S, W> consumer) {
 		forEachRek(consumer, getWurzel());
 	}
 	
-	private void forEachRek(BiConsumer consumer, Knoten<S, W> knoten) {
+	private void forEachRek(BiConsumer<S, W> consumer, Knoten<S, W> knoten) {
 		if(knoten != null)
 			consumer.accept(knoten.getSchluessel(), knoten.getWert());
 		if(knoten.getLinks() != null)
@@ -190,15 +201,32 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	}
 
 	@Override
-	public BinearBaumAssoziativesArray extractAll(BinearBaumAssoziativesArray array) {
+	public BinearBaumAssoziativesArray<S, W> extractAll(BinearBaumAssoziativesArray<S, W> array) {
 		array.putAll(getWurzel());
 		return array;
 	}
 
 	@Override
-	public BinearBaumAssoziativesArray map(BiFunction function) {
-		// TODO Auto-generated method stub
-		return null;
+	public BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, Knoten<S, W>> function) {
+		BinearBaumAssoziativesArray<S, W> neuesArray = new BinearBaumAssoziativesArray<>();
+		return map(function, getWurzel(), neuesArray);
+	}
+	
+	private BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, Knoten<S, W>> function, 
+			Knoten<S, W> knoten, BinearBaumAssoziativesArray<S, W> array ) {
+		
+		if(knoten != null) {
+			array.put(knoten.getSchluessel(), (function.apply(knoten.getSchluessel(), knoten.getWert())).getWert());
+			
+			if(knoten.getLinks() != null) 
+				map(function, knoten.getLinks(), array);
+			if(knoten.getRechts() != null)
+				map(function, knoten.getRechts(), array);
+			
+		}
+		
+		
+		return array;
 	}
 	
 	private Knoten<S, W> findKey(S schluessel) {
@@ -241,15 +269,20 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 		return enthalten;
 	}
 	
+	/**
+	 * Gibt die Wurzel des BinearBaumAssoziativesArrays zurueck
+	 * 
+	 * @return die Wurzel, also den Anfangspunkt
+	 */
 	public Knoten<S, W> getWurzel() {
 		return this.wurzel;
 	}
 	
-	public void setWurzel(Knoten<S, W> wurzel) {
+	private void setWurzel(Knoten<S, W> wurzel) {
 		this.wurzel = wurzel;
 	}
 	
-	public int getAnzahl() {
+	private int getAnzahl() {
 		return this.anzahl;
 	}
 	
@@ -267,7 +300,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 		return tmp;
 	}
 	
-	public String ausgeben(Knoten<S, W> knoten) {
+	private String ausgeben(Knoten<S, W> knoten) {
 		String txt = "";
 		
 		if(knoten != null) {
@@ -283,6 +316,7 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + anzahl;
 		result = prime * result + ((wurzel == null) ? 0 : wurzel.hashCode());
 		return result;
 	}
@@ -295,7 +329,9 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BinearBaumAssoziativesArray other = (BinearBaumAssoziativesArray) obj;
+		BinearBaumAssoziativesArray<S, W> other = (BinearBaumAssoziativesArray<S, W>) obj;
+		if (anzahl != other.anzahl)
+			return false;
 		if (wurzel == null) {
 			if (other.wurzel != null)
 				return false;
@@ -303,6 +339,8 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 			return false;
 		return true;
 	}
+
+	
 	
 
 }

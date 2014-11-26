@@ -4,7 +4,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.BinearBaumAssoziativesArray;
-import de.hs_mannheim.ws14_15.tpe.ueb3.ib04.assoziativesarray.model.binaerbaum.Knoten;
 
 /**
  * Interface für das AssociativeArray
@@ -113,7 +112,7 @@ public interface AssociativeArray<S, W> {
 	 * @param function - BiFunction
 	 * @return ein AssociativeArray
 	 */
-	public abstract BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, Knoten<S, W>> function);
+	public abstract BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, W> function);
 	
 	
 }

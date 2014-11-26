@@ -207,16 +207,16 @@ public class BinearBaumAssoziativesArray<S, W> implements AssociativeArray<S, W>
 	}
 
 	@Override
-	public BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, Knoten<S, W>> function) {
+	public BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, W> function) {
 		BinearBaumAssoziativesArray<S, W> neuesArray = new BinearBaumAssoziativesArray<>();
 		return map(function, getWurzel(), neuesArray);
 	}
 	
-	private BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, Knoten<S, W>> function, 
+	private BinearBaumAssoziativesArray<S, W> map(BiFunction<S, W, W> function, 
 			Knoten<S, W> knoten, BinearBaumAssoziativesArray<S, W> array ) {
 		
 		if(knoten != null) {
-			array.put(knoten.getSchluessel(), (function.apply(knoten.getSchluessel(), knoten.getWert())).getWert());
+			array.put(knoten.getSchluessel(), function.apply(knoten.getSchluessel(), knoten.getWert()));
 			
 			if(knoten.getLinks() != null) 
 				map(function, knoten.getLinks(), array);
